@@ -572,23 +572,32 @@ section {
 }
 
 .logo-icon-wrap {
-  width: 46px;
-  height: 38px;
+  width: 44px;
+  height: 44px;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: radial-gradient(circle at center, rgba(255, 184, 0, 0.25) 0%, rgba(20, 26, 40, 0.9) 100%);
+  background: radial-gradient(circle at center, rgba(255, 184, 0, 0.2) 0%, rgba(15, 20, 30, 0.95) 100%);
   border: 1px solid rgba(255, 184, 0, 0.45);
-  border-radius: 10px;
-  padding: 3px 5px;
+  border-radius: 12px;
+  padding: 3px;
   box-shadow: 0 0 16px rgba(255, 184, 0, 0.25);
   transition: all var(--trans-fast);
   flex-shrink: 0;
+  overflow: hidden;
 }
 .brand-logo:hover .logo-icon-wrap {
   transform: scale(1.08) rotate(-2deg);
   border-color: var(--primary);
   box-shadow: 0 0 24px rgba(255, 184, 0, 0.55);
+}
+
+.brand-img-icon {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  border-radius: 8px;
+  display: block;
 }
 
 .brand-svg-logo {
