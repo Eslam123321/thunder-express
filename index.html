@@ -533,49 +533,61 @@
               <input type="text" id="calcName" class="form-input" placeholder="اكتب اسمك أو اسم المتجر">
             </div>
 
-            <div class="form-group">
-              <label for="calcGov" class="form-label">
-                <i class="fa-solid fa-location-dot text-primary"></i> محافظة وجهة التسليم:
-              </label>
-              <select id="calcGov" class="form-select">
-                <optgroup label="القاهرة والجيزة">
-                  <option value="القاهرة" data-zone="cairo" data-time="24 - 48 ساعة" selected>القاهرة</option>
-                  <option value="الجيزة" data-zone="cairo" data-time="24 - 48 ساعة">الجيزة</option>
-                </optgroup>
-                <optgroup label="الإسكندرية ومحافظات الدلتا">
-                  <option value="الإسكندرية" data-zone="delta" data-time="2 - 3 أيام عمل">الإسكندرية</option>
-                  <option value="القليوبية" data-zone="delta" data-time="2 - 3 أيام عمل">القليوبية</option>
-                  <option value="البحيرة" data-zone="delta" data-time="2 - 3 أيام عمل">البحيرة</option>
-                  <option value="الغربية" data-zone="delta" data-time="2 - 3 أيام عمل">الغربية</option>
-                  <option value="المنوفية" data-zone="delta" data-time="2 - 3 أيام عمل">المنوفية</option>
-                  <option value="الدقهلية" data-zone="delta" data-time="2 - 3 أيام عمل">الدقهلية</option>
-                  <option value="الشرقية" data-zone="delta" data-time="2 - 3 أيام عمل">الشرقية</option>
-                  <option value="دمياط" data-zone="delta" data-time="2 - 3 أيام عمل">دمياط</option>
-                  <option value="كفر الشيخ" data-zone="delta" data-time="2 - 3 أيام عمل">كفر الشيخ</option>
-                </optgroup>
-                <optgroup label="مدن القناة">
-                  <option value="بورسعيد" data-zone="delta" data-time="2 - 3 أيام عمل">بورسعيد</option>
-                  <option value="الإسماعيلية" data-zone="delta" data-time="2 - 3 أيام عمل">الإسماعيلية</option>
-                  <option value="السويس" data-zone="delta" data-time="2 - 3 أيام عمل">السويس</option>
-                </optgroup>
-                <optgroup label="محافظات الصعيد">
-                  <option value="الفيوم" data-zone="upper" data-time="3 - 4 أيام عمل">الفيوم</option>
-                  <option value="بني سويف" data-zone="upper" data-time="3 - 4 أيام عمل">بني سويف</option>
-                  <option value="المنيا" data-zone="upper" data-time="3 - 4 أيام عمل">المنيا</option>
-                  <option value="أسيوط" data-zone="upper" data-time="3 - 4 أيام عمل">أسيوط</option>
-                  <option value="سوهاج" data-zone="upper" data-time="3 - 4 أيام عمل">سوهاج</option>
-                  <option value="قنا" data-zone="upper" data-time="3 - 4 أيام عمل">قنا</option>
-                  <option value="الأقصر" data-zone="upper" data-time="3 - 4 أيام عمل">الأقصر</option>
-                  <option value="أسوان" data-zone="upper" data-time="3 - 4 أيام عمل">أسوان</option>
-                </optgroup>
-                <optgroup label="المحافظات الحدودية">
-                  <option value="مطروح" data-zone="frontier" data-time="4 - 5 أيام عمل">مطروح</option>
-                  <option value="البحر الأحمر" data-zone="frontier" data-time="4 - 5 أيام عمل">البحر الأحمر</option>
-                  <option value="شمال سيناء" data-zone="frontier" data-time="4 - 5 أيام عمل">شمال سيناء</option>
-                  <option value="جنوب سيناء" data-zone="frontier" data-time="4 - 5 أيام عمل">جنوب سيناء</option>
-                  <option value="الوادي الجديد" data-zone="frontier" data-time="4 - 5 أيام عمل">الوادي الجديد</option>
-                </optgroup>
-              </select>
+            <div class="form-row">
+              <div class="form-group flex-1">
+                <label for="calcPickupGov" class="form-label">
+                  <i class="fa-solid fa-truck-ramp-box text-primary"></i> محافظة وجهة الاستلام:
+                </label>
+                <select id="calcPickupGov" class="form-select">
+                  <option value="القاهرة" selected>القاهرة</option>
+                  <option value="الجيزة">الجيزة</option>
+                </select>
+              </div>
+
+              <div class="form-group flex-1">
+                <label for="calcGov" class="form-label">
+                  <i class="fa-solid fa-location-dot text-primary"></i> محافظة وجهة التسليم:
+                </label>
+                <select id="calcGov" class="form-select">
+                  <optgroup label="القاهرة والجيزة">
+                    <option value="القاهرة" data-zone="cairo" data-time="24 - 48 ساعة" selected>القاهرة</option>
+                    <option value="الجيزة" data-zone="cairo" data-time="24 - 48 ساعة">الجيزة</option>
+                  </optgroup>
+                  <optgroup label="الإسكندرية ومحافظات الدلتا">
+                    <option value="الإسكندرية" data-zone="delta" data-time="2 - 3 أيام عمل">الإسكندرية</option>
+                    <option value="القليوبية" data-zone="delta" data-time="2 - 3 أيام عمل">القليوبية</option>
+                    <option value="البحيرة" data-zone="delta" data-time="2 - 3 أيام عمل">البحيرة</option>
+                    <option value="الغربية" data-zone="delta" data-time="2 - 3 أيام عمل">الغربية</option>
+                    <option value="المنوفية" data-zone="delta" data-time="2 - 3 أيام عمل">المنوفية</option>
+                    <option value="الدقهلية" data-zone="delta" data-time="2 - 3 أيام عمل">الدقهلية</option>
+                    <option value="الشرقية" data-zone="delta" data-time="2 - 3 أيام عمل">الشرقية</option>
+                    <option value="دمياط" data-zone="delta" data-time="2 - 3 أيام عمل">دمياط</option>
+                    <option value="كفر الشيخ" data-zone="delta" data-time="2 - 3 أيام عمل">كفر الشيخ</option>
+                  </optgroup>
+                  <optgroup label="مدن القناة">
+                    <option value="بورسعيد" data-zone="delta" data-time="2 - 3 أيام عمل">بورسعيد</option>
+                    <option value="الإسماعيلية" data-zone="delta" data-time="2 - 3 أيام عمل">الإسماعيلية</option>
+                    <option value="السويس" data-zone="delta" data-time="2 - 3 أيام عمل">السويس</option>
+                  </optgroup>
+                  <optgroup label="محافظات الصعيد">
+                    <option value="الفيوم" data-zone="upper" data-time="3 - 4 أيام عمل">الفيوم</option>
+                    <option value="بني سويف" data-zone="upper" data-time="3 - 4 أيام عمل">بني سويف</option>
+                    <option value="المنيا" data-zone="upper" data-time="3 - 4 أيام عمل">المنيا</option>
+                    <option value="أسيوط" data-zone="upper" data-time="3 - 4 أيام عمل">أسيوط</option>
+                    <option value="سوهاج" data-zone="upper" data-time="3 - 4 أيام عمل">سوهاج</option>
+                    <option value="قنا" data-zone="upper" data-time="3 - 4 أيام عمل">قنا</option>
+                    <option value="الأقصر" data-zone="upper" data-time="3 - 4 أيام عمل">الأقصر</option>
+                    <option value="أسوان" data-zone="upper" data-time="3 - 4 أيام عمل">أسوان</option>
+                  </optgroup>
+                  <optgroup label="المحافظات الحدودية">
+                    <option value="مطروح" data-zone="frontier" data-time="4 - 5 أيام عمل">مطروح</option>
+                    <option value="البحر الأحمر" data-zone="frontier" data-time="4 - 5 أيام عمل">البحر الأحمر</option>
+                    <option value="شمال سيناء" data-zone="frontier" data-time="4 - 5 أيام عمل">شمال سيناء</option>
+                    <option value="جنوب سيناء" data-zone="frontier" data-time="4 - 5 أيام عمل">جنوب سيناء</option>
+                    <option value="الوادي الجديد" data-zone="frontier" data-time="4 - 5 أيام عمل">الوادي الجديد</option>
+                  </optgroup>
+                </select>
+              </div>
             </div>
 
             <div class="form-row">

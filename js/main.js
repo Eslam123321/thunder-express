@@ -143,6 +143,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // 4. Interactive Shipping Request Form
   const calcName = document.getElementById('calcName');
+  const calcPickupGov = document.getElementById('calcPickupGov');
   const calcGov = document.getElementById('calcGov');
   const calcOrdersCount = document.getElementById('calcOrdersCount') || document.getElementById('calcWeight');
   const calcService = document.getElementById('calcService');
@@ -157,6 +158,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const selectedGovOption = calcGov.options ? calcGov.options[calcGov.selectedIndex] : null;
     const deliveryTime = selectedGovOption ? (selectedGovOption.getAttribute('data-time') || '24 - 48 ساعة') : '24 - 48 ساعة';
     const govName = selectedGovOption ? selectedGovOption.text : (calcGov.value || 'القاهرة');
+    const pickupGovVal = calcPickupGov ? calcPickupGov.value : 'القاهرة';
     
     // Get typed orders count
     let rawOrdersCount = (calcOrdersCount && calcOrdersCount.value.trim()) ? calcOrdersCount.value.trim() : '';
@@ -177,6 +179,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     return {
       name: nameVal,
+      pickupGov: pickupGovVal,
       gov: govName,
       time: deliveryTime,
       ordersCount: ordersCountVal,
@@ -188,6 +191,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Attach change listeners to calculator elements
   if (calcName) calcName.addEventListener('input', calculateShipping);
+  if (calcPickupGov) calcPickupGov.addEventListener('change', calculateShipping);
   if (calcGov) calcGov.addEventListener('change', calculateShipping);
   if (calcOrdersCount) {
     calcOrdersCount.addEventListener('input', calculateShipping);
@@ -212,6 +216,7 @@ document.addEventListener('DOMContentLoaded', () => {
 ----------------------------------
 👤 *الاسم / المتجر:* ${data.name}
 📞 *رقم الموبايل للتواصل:* ${data.phone}
+📍 *محافظة وجهة الاستلام (Pickup):* ${data.pickupGov}
 🚚 *محافظة وجهة التسليم:* ${data.gov}
 ⏱️ *مدة التوصيل المتوقعة:* ${data.time}
 📦 *عدد الشحنات شهرياً:* ${data.ordersCount}
