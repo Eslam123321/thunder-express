@@ -572,30 +572,31 @@ section {
 }
 
 .logo-icon-wrap {
-  height: 42px;
+  width: 44px;
+  height: 44px;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: transparent;
-  border: none;
-  box-shadow: none;
-  padding: 0;
+  background: #0b0f17;
+  border: 1.5px solid rgba(255, 184, 0, 0.45);
+  border-radius: 11px;
+  overflow: hidden;
+  box-shadow: 0 0 14px rgba(255, 184, 0, 0.2), inset 0 0 8px rgba(0, 0, 0, 0.6);
+  transition: all var(--trans-fast);
   flex-shrink: 0;
 }
 
-.brand-img-icon {
-  height: 40px;
-  width: auto;
-  max-width: 90px;
-  object-fit: contain;
-  display: block;
-  filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.5)) drop-shadow(0 0 10px rgba(255, 184, 0, 0.25));
-  transition: filter var(--trans-fast), transform var(--trans-fast);
+.brand-logo:hover .logo-icon-wrap {
+  transform: scale(1.08) rotate(-2deg);
+  border-color: var(--primary);
+  box-shadow: 0 0 22px rgba(255, 184, 0, 0.55), inset 0 0 10px rgba(255, 184, 0, 0.2);
 }
 
-.brand-logo:hover .brand-img-icon {
-  filter: drop-shadow(0 2px 12px rgba(0, 0, 0, 0.7)) drop-shadow(0 0 18px rgba(255, 184, 0, 0.6));
-  transform: scale(1.06) rotate(-1deg);
+.brand-img-icon {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
 }
 
 .brand-svg-logo {
