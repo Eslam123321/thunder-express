@@ -144,33 +144,24 @@ document.addEventListener('DOMContentLoaded', () => {
   // 4. Interactive Shipping Request Form
   const calcName = document.getElementById('calcName');
   const calcGov = document.getElementById('calcGov');
-  const calcWeight = document.getElementById('calcWeight');
+  const calcOrdersCount = document.getElementById('calcOrdersCount') || document.getElementById('calcWeight');
   const calcService = document.getElementById('calcService');
   const calcPhone = document.getElementById('calcPhone');
-  const calcCodAmount = document.getElementById('calcCodAmount');
   const calcNotes = document.getElementById('calcNotes');
   const resDeliveryTime = document.getElementById('resDeliveryTime');
   const resEstimatedPrice = document.getElementById('resEstimatedPrice');
   const sendCalcToWhatsappBtn = document.getElementById('sendCalcToWhatsappBtn');
 
   function calculateShipping() {
-    if (!calcGov || !calcWeight || !calcService) return;
+    if (!calcGov || !calcOrdersCount || !calcService) return;
 
     const selectedGovOption = calcGov.options[calcGov.selectedIndex];
-    const basePrice = parseFloat(selectedGovOption.getAttribute('data-base') || 45);
     const deliveryTime = selectedGovOption.getAttribute('data-time') || '24 - 48 ساعة';
-
-    const selectedWeightOption = calcWeight.options[calcWeight.selectedIndex];
-    const weightExtra = parseFloat(selectedWeightOption.getAttribute('data-extra') || 0);
-
+    const selectedOrdersOption = calcOrdersCount.options[calcOrdersCount.selectedIndex];
     const selectedServiceOption = calcService.options[calcService.selectedIndex];
-    const serviceFee = parseFloat(selectedServiceOption.getAttribute('data-fee') || 0);
-
-    const totalPrice = basePrice + weightExtra + serviceFee;
 
     // Update UI
     if (resDeliveryTime) resDeliveryTime.textContent = deliveryTime;
-    if (resEstimatedPrice) resEstimatedPrice.textContent = totalPrice;
 
     const nameVal = (calcName && calcName.value.trim()) ? calcName.value.trim() : 'غير محدد';
     const phoneVal = (calcPhone && calcPhone.value.trim()) ? calcPhone.value.trim() : 'غير محدد';
@@ -180,22 +171,19 @@ document.addEventListener('DOMContentLoaded', () => {
       name: nameVal,
       gov: selectedGovOption.text,
       time: deliveryTime,
-      weight: selectedWeightOption.text,
+      ordersCount: selectedOrdersOption ? selectedOrdersOption.text : 'غير محدد',
       service: selectedServiceOption.text,
       phone: phoneVal,
-      codAmount: (calcCodAmount && calcCodAmount.value) ? `${calcCodAmount.value} ج.م` : 'بدون تحصيل',
-      notes: notesVal,
-      price: totalPrice
+      notes: notesVal
     };
   }
 
   // Attach change listeners to calculator elements
   if (calcName) calcName.addEventListener('input', calculateShipping);
   if (calcGov) calcGov.addEventListener('change', calculateShipping);
-  if (calcWeight) calcWeight.addEventListener('change', calculateShipping);
+  if (calcOrdersCount) calcOrdersCount.addEventListener('change', calculateShipping);
   if (calcService) calcService.addEventListener('change', calculateShipping);
   if (calcPhone) calcPhone.addEventListener('input', calculateShipping);
-  if (calcCodAmount) calcCodAmount.addEventListener('input', calculateShipping);
   if (calcNotes) calcNotes.addEventListener('input', calculateShipping);
 
   // Initialize calculator on page load
@@ -205,21 +193,21 @@ document.addEventListener('DOMContentLoaded', () => {
   if (sendCalcToWhatsappBtn) {
     sendCalcToWhatsappBtn.addEventListener('click', () => {
       const data = calculateShipping();
+      if (!data) return;
       const whatsappNumber = '201041878806';
       
       const message = 
-`⚡ *طلب حجز شحنة جديدة | Thunder Express*
+`⚡ *طلب حجز وتنسيق شحنات | Thunder Express*
 ----------------------------------
 👤 *الاسم / المتجر:* ${data.name}
 📞 *رقم الموبايل للتواصل:* ${data.phone}
 📍 *محافظة الوجهة:* ${data.gov}
 ⏱️ *مدة التوصيل المتوقعة:* ${data.time}
-📦 *وزن الطرد:* ${data.weight}
+📦 *عدد الشحنات شهرياً:* ${data.ordersCount}
 🛠️ *نوع الخدمة:* ${data.service}
-💰 *مبلغ التحصيل (COD):* ${data.codAmount}
 📝 *تفاصيل إضافية:* ${data.notes}
 ----------------------------------
-برجاء تأكيد حجز المندوب واستلام الشحنة.`;
+برجاء تأكيد استلام الطلب وتنسيق استلام الشحنات.`;
 
       const encodedMsg = encodeURIComponent(message);
       const url = `https://wa.me/${whatsappNumber}?text=${encodedMsg}`;
@@ -311,7 +299,6 @@ document.addEventListener('DOMContentLoaded', () => {
       const senderPhone = document.getElementById('modalSenderPhone')?.value || '';
       const pickupAddress = document.getElementById('modalPickupAddress')?.value || '';
       const destGov = document.getElementById('modalDestGov')?.value || '';
-      const cod = document.getElementById('modalCod')?.value || 'لا يوجد (مدفوع مسبقاً)';
       const notes = document.getElementById('modalNotes')?.value || 'لا توجد ملاحظات إضافية';
 
       const whatsappNumber = '201041878806';
@@ -322,7 +309,6 @@ document.addEventListener('DOMContentLoaded', () => {
 📞 *هاتف الراسل:* ${senderPhone}
 📍 *عنوان استلام الطرد:* ${pickupAddress}
 🚚 *محافظة وجهة التسليم:* ${destGov}
-💵 *مبلغ التحصيل (COD):* ${cod}
 📝 *ملاحظات الطرد:* ${notes}
 ===============================
 برجاء إرسال المندوب في أقرب موعد.`;

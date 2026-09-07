@@ -207,15 +207,15 @@
 
               <div class="form-row">
                 <div class="form-group flex-1">
-                  <label for="calcWeight" class="form-label">
-                    <i class="fa-solid fa-weight-scale text-primary"></i> وزن الشحنة:
+                  <label for="calcOrdersCount" class="form-label">
+                    <i class="fa-solid fa-boxes-stacked text-primary"></i> عدد الشحنات لكل شهر:
                   </label>
-                  <select id="calcWeight" class="form-select">
-                    <option value="1" selected>حتى 1 كجم (طرد قياسي)</option>
-                    <option value="3">من 1 إلى 3 كجم</option>
-                    <option value="5">من 3 إلى 5 كجم</option>
-                    <option value="10">من 5 إلى 10 كجم</option>
-                    <option value="15">أكثر من 10 كجم (شحن ثقيل)</option>
+                  <select id="calcOrdersCount" class="form-select">
+                    <option value="50" selected>حتى 50 شحنة شهرياً</option>
+                    <option value="150">من 50 إلى 150 شحنة شهرياً</option>
+                    <option value="300">من 150 إلى 300 شحنة شهرياً</option>
+                    <option value="500">من 300 إلى 500 شحنة شهرياً</option>
+                    <option value="1000">أكثر من 500 شحنة شهرياً (متاجر كبرى)</option>
                   </select>
                 </div>
 
@@ -231,20 +231,11 @@
                 </div>
               </div>
 
-              <div class="form-row">
-                <div class="form-group flex-1">
-                  <label for="calcPhone" class="form-label">
-                    <i class="fa-solid fa-phone text-primary"></i> رقم الموبايل للتواصل:
-                  </label>
-                  <input type="tel" id="calcPhone" class="form-input" placeholder="مثال: 01012345678" dir="ltr" style="text-align: right;">
-                </div>
-
-                <div class="form-group flex-1">
-                  <label for="calcCodAmount" class="form-label">
-                    <i class="fa-solid fa-hand-holding-dollar text-primary"></i> مبلغ التحصيل (COD) بالجنيه (اختياري):
-                  </label>
-                  <input type="number" id="calcCodAmount" class="form-input" placeholder="مثال: 450 ج.م" min="0">
-                </div>
+              <div class="form-group">
+                <label for="calcPhone" class="form-label">
+                  <i class="fa-solid fa-phone text-primary"></i> رقم الموبايل للتواصل:
+                </label>
+                <input type="tel" id="calcPhone" class="form-input" placeholder="مثال: 01012345678" dir="ltr" style="text-align: right;">
               </div>
 
               <div class="form-group">
@@ -330,22 +321,16 @@
             placeholder="المنطقة - اسم الشارع - رقم العقار / المحل" required>
         </div>
 
-        <div class="form-row">
-          <div class="form-group flex-1">
-            <label class="form-label" for="modalDestGov">محافظة وجهة التسليم: *</label>
-            <select id="modalDestGov" class="form-select" required>
-              <option value="القاهرة">القاهرة</option>
-              <option value="الجيزة">الجيزة</option>
-              <option value="الإسكندرية">الإسكندرية</option>
-              <option value="محافظات الدلتا">محافظات الدلتا</option>
-              <option value="محافظات الصعيد">محافظات الصعيد</option>
-              <option value="المحافظات الحدودية">المحافظات الحدودية</option>
-            </select>
-          </div>
-          <div class="form-group flex-1">
-            <label class="form-label" for="modalCod">مبلغ التحصيل (COD):</label>
-            <input type="text" id="modalCod" class="form-input" placeholder="مثال: 500 ج.م (اتركه فارغاً إذا تم الدفع)">
-          </div>
+        <div class="form-group">
+          <label class="form-label" for="modalDestGov">محافظة وجهة التسليم: *</label>
+          <select id="modalDestGov" class="form-select" required>
+            <option value="القاهرة">القاهرة</option>
+            <option value="الجيزة">الجيزة</option>
+            <option value="الإسكندرية">الإسكندرية</option>
+            <option value="محافظات الدلتا">محافظات الدلتا</option>
+            <option value="محافظات الصعيد">محافظات الصعيد</option>
+            <option value="المحافظات الحدودية">المحافظات الحدودية</option>
+          </select>
         </div>
 
         <div class="form-group">
