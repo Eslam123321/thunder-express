@@ -149,16 +149,26 @@ document.addEventListener('DOMContentLoaded', () => {
   const calcPhone = document.getElementById('calcPhone');
   const calcNotes = document.getElementById('calcNotes');
   const resDeliveryTime = document.getElementById('resDeliveryTime');
-  const resEstimatedPrice = document.getElementById('resEstimatedPrice');
   const sendCalcToWhatsappBtn = document.getElementById('sendCalcToWhatsappBtn');
 
   function calculateShipping() {
     if (!calcGov || !calcOrdersCount || !calcService) return;
 
-    const selectedGovOption = calcGov.options[calcGov.selectedIndex];
-    const deliveryTime = selectedGovOption.getAttribute('data-time') || '24 - 48 ساعة';
-    const selectedOrdersOption = calcOrdersCount.options[calcOrdersCount.selectedIndex];
-    const selectedServiceOption = calcService.options[calcService.selectedIndex];
+    const selectedGovOption = calcGov.options ? calcGov.options[calcGov.selectedIndex] : null;
+    const deliveryTime = selectedGovOption ? (selectedGovOption.getAttribute('data-time') || '24 - 48 ساعة') : '24 - 48 ساعة';
+    const govName = selectedGovOption ? selectedGovOption.text : (calcGov.value || 'القاهرة');
+    
+    // Get typed or selected orders count
+    let ordersCountVal = 'حتى 50 شحنة شهرياً';
+    if (calcOrdersCount.tagName === 'SELECT') {
+      const selectedOption = calcOrdersCount.options[calcOrdersCount.selectedIndex];
+      ordersCountVal = selectedOption ? selectedOption.text : calcOrdersCount.value;
+    } else {
+      ordersCountVal = calcOrdersCount.value.trim() || 'غير محدد (بحسب الاتفاق)';
+    }
+
+    const selectedServiceOption = calcService.options ? calcService.options[calcService.selectedIndex] : null;
+    const serviceName = selectedServiceOption ? selectedServiceOption.text : (calcService.value || 'شحن عادي منتظم');
 
     // Update UI
     if (resDeliveryTime) resDeliveryTime.textContent = deliveryTime;
@@ -169,10 +179,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     return {
       name: nameVal,
-      gov: selectedGovOption.text,
+      gov: govName,
       time: deliveryTime,
-      ordersCount: selectedOrdersOption ? selectedOrdersOption.text : 'غير محدد',
-      service: selectedServiceOption.text,
+      ordersCount: ordersCountVal,
+      service: serviceName,
       phone: phoneVal,
       notes: notesVal
     };
@@ -181,7 +191,10 @@ document.addEventListener('DOMContentLoaded', () => {
   // Attach change listeners to calculator elements
   if (calcName) calcName.addEventListener('input', calculateShipping);
   if (calcGov) calcGov.addEventListener('change', calculateShipping);
-  if (calcOrdersCount) calcOrdersCount.addEventListener('change', calculateShipping);
+  if (calcOrdersCount) {
+    calcOrdersCount.addEventListener('input', calculateShipping);
+    calcOrdersCount.addEventListener('change', calculateShipping);
+  }
   if (calcService) calcService.addEventListener('change', calculateShipping);
   if (calcPhone) calcPhone.addEventListener('input', calculateShipping);
   if (calcNotes) calcNotes.addEventListener('input', calculateShipping);
@@ -197,7 +210,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const whatsappNumber = '201041878806';
       
       const message = 
-`⚡ *طلب حجز وتنسيق شحنات | Thunder Express*
+`⚡ *طلب حجز موعد Pickup | Thunder Express*
 ----------------------------------
 👤 *الاسم / المتجر:* ${data.name}
 📞 *رقم الموبايل للتواصل:* ${data.phone}
@@ -207,7 +220,7 @@ document.addEventListener('DOMContentLoaded', () => {
 🛠️ *نوع الخدمة:* ${data.service}
 📝 *تفاصيل إضافية:* ${data.notes}
 ----------------------------------
-برجاء تأكيد استلام الطلب وتنسيق استلام الشحنات.`;
+برجاء تأكيد حجز موعد الـ Pickup وتنسيق الاستلام.`;
 
       const encodedMsg = encodeURIComponent(message);
       const url = `https://wa.me/${whatsappNumber}?text=${encodedMsg}`;
@@ -303,15 +316,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
       const whatsappNumber = '201041878806';
       const orderMessage = 
-`⚡ *طلب مندوب استلام جديد | Thunder Express*
+`⚡ *طلب حجز موعد Pickup جديد | Thunder Express*
 ===============================
 👤 *اسم الراسل/المتجر:* ${senderName}
 📞 *هاتف الراسل:* ${senderPhone}
 📍 *عنوان استلام الطرد:* ${pickupAddress}
 🚚 *محافظة وجهة التسليم:* ${destGov}
-📝 *ملاحظات الطرد:* ${notes}
+📝 *ملاحظات الاستلام:* ${notes}
 ===============================
-برجاء إرسال المندوب في أقرب موعد.`;
+برجاء تأكيد موعد الـ Pickup في أقرب وقت.`;
 
       const encodedUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(orderMessage)}`;
       window.open(encodedUrl, '_blank');
