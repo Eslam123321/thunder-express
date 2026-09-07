@@ -158,13 +158,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const deliveryTime = selectedGovOption ? (selectedGovOption.getAttribute('data-time') || '24 - 48 ساعة') : '24 - 48 ساعة';
     const govName = selectedGovOption ? selectedGovOption.text : (calcGov.value || 'القاهرة');
     
-    // Get typed or selected orders count
-    let ordersCountVal = 'حتى 50 شحنة شهرياً';
-    if (calcOrdersCount.tagName === 'SELECT') {
-      const selectedOption = calcOrdersCount.options[calcOrdersCount.selectedIndex];
-      ordersCountVal = selectedOption ? selectedOption.text : calcOrdersCount.value;
-    } else {
-      ordersCountVal = calcOrdersCount.value.trim() || 'غير محدد (بحسب الاتفاق)';
+    // Get typed orders count
+    let rawOrdersCount = (calcOrdersCount && calcOrdersCount.value.trim()) ? calcOrdersCount.value.trim() : '';
+    let ordersCountVal = 'غير محدد';
+    if (rawOrdersCount) {
+      ordersCountVal = !isNaN(rawOrdersCount) ? `${rawOrdersCount} شحنة شهرياً` : rawOrdersCount;
     }
 
     const selectedServiceOption = calcService.options ? calcService.options[calcService.selectedIndex] : null;
@@ -214,7 +212,7 @@ document.addEventListener('DOMContentLoaded', () => {
 ----------------------------------
 👤 *الاسم / المتجر:* ${data.name}
 📞 *رقم الموبايل للتواصل:* ${data.phone}
-📍 *محافظة الوجهة:* ${data.gov}
+🚚 *محافظة وجهة التسليم:* ${data.gov}
 ⏱️ *مدة التوصيل المتوقعة:* ${data.time}
 📦 *عدد الشحنات شهرياً:* ${data.ordersCount}
 🛠️ *نوع الخدمة:* ${data.service}

@@ -148,16 +148,16 @@
 
               <div class="form-group">
                 <label for="calcGov" class="form-label">
-                  <i class="fa-solid fa-location-dot text-primary"></i> محافظة وجهة الاستلام:
+                  <i class="fa-solid fa-location-dot text-primary"></i> محافظة وجهة التسليم:
                 </label>
                 <select id="calcGov" class="form-select">
-                  <optgroup label="القاهرة الكبرى">
+                  <optgroup label="القاهرة والجيزة">
                     <option value="القاهرة" data-zone="cairo" data-time="24 - 48 ساعة" selected>القاهرة</option>
                     <option value="الجيزة" data-zone="cairo" data-time="24 - 48 ساعة">الجيزة</option>
-                    <option value="القليوبية" data-zone="cairo" data-time="24 - 48 ساعة">القليوبية</option>
                   </optgroup>
                   <optgroup label="الإسكندرية ومحافظات الدلتا">
                     <option value="الإسكندرية" data-zone="delta" data-time="2 - 3 أيام عمل">الإسكندرية</option>
+                    <option value="القليوبية" data-zone="delta" data-time="2 - 3 أيام عمل">القليوبية</option>
                     <option value="البحيرة" data-zone="delta" data-time="2 - 3 أيام عمل">البحيرة</option>
                     <option value="الغربية" data-zone="delta" data-time="2 - 3 أيام عمل">الغربية</option>
                     <option value="المنوفية" data-zone="delta" data-time="2 - 3 أيام عمل">المنوفية</option>
@@ -194,16 +194,9 @@
               <div class="form-row">
                 <div class="form-group flex-1">
                   <label for="calcOrdersCount" class="form-label">
-                    <i class="fa-solid fa-boxes-stacked text-primary"></i> عدد الشحنات شهرياً (اكتب العدد أو اختر):
+                    <i class="fa-solid fa-boxes-stacked text-primary"></i> عدد الشحنات شهرياً:
                   </label>
-                  <input type="text" id="calcOrdersCount" class="form-input" list="ordersCountListOrder" placeholder="اكتب العدد هنا أو اختر من القائمة" value="حتى 50 شحنة شهرياً">
-                  <datalist id="ordersCountListOrder">
-                    <option value="حتى 50 شحنة شهرياً">
-                    <option value="من 50 إلى 150 شحنة شهرياً">
-                    <option value="من 150 إلى 300 شحنة شهرياً">
-                    <option value="من 300 إلى 500 شحنة شهرياً">
-                    <option value="أكثر من 500 شحنة شهرياً">
-                  </datalist>
+                  <input type="number" id="calcOrdersCount" class="form-input" placeholder="اكتب عدد الشحنات شهرياً (مثال: 100)" min="1">
                 </div>
 
                 <div class="form-group flex-1">
@@ -311,13 +304,13 @@
         <div class="form-group">
           <label class="form-label" for="modalDestGov">محافظة وجهة التسليم: *</label>
           <select id="modalDestGov" class="form-select" required>
-            <optgroup label="القاهرة الكبرى">
+            <optgroup label="القاهرة والجيزة">
               <option value="القاهرة">القاهرة</option>
               <option value="الجيزة">الجيزة</option>
-              <option value="القليوبية">القليوبية</option>
             </optgroup>
             <optgroup label="الإسكندرية ومحافظات الدلتا">
               <option value="الإسكندرية">الإسكندرية</option>
+              <option value="القليوبية">القليوبية</option>
               <option value="البحيرة">البحيرة</option>
               <option value="الغربية">الغربية</option>
               <option value="المنوفية">المنوفية</option>
